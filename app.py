@@ -3,11 +3,14 @@
 import os
 import shutil
 
+user = 'brodo'
+
 # variabling the locations
-file_location = 'C:\\Users\\miyamoto\\Downloads\\'
-yt_location = 'C:\\Users\\miyamoto\\Videos\\yt_videos\\'
-cs_location = 'C:\\Users\\miyamoto\\Videos\\Programming\\'
-pic_location = 'C:\\Users\\miyamoto\\Pictures\\'
+file_location = f'C:\\Users\\{user}\\Downloads\\'
+yt_location = f'C:\\Users\\{user}\\Videos\\yt_videos\\'
+cs_location = f'C:\\Users\\{user}\\Videos\\Programming\\'
+pic_location = f'C:\\Users\\{user}\\Pictures\\'
+movie_folder_location = f'C:\\Users\\{user}\\Videos\\Motion Pictures\\'
 
 #checking if movies are still being torrented
 # question = input("Are all files done downloading? ").lower()
@@ -22,6 +25,10 @@ youtube_videos = [f for f in os.listdir(file_location) if '.mp4' in f.lower()]
 
 pictures = [f for f in os.listdir(file_location) if '.png' in f.lower()
             or '.jpg' in f.lower() or '.jpeg' in f.lower()]
+
+movie_folders = [f for f in os.listdir(file_location) if 'anime' in f.lower() 
+                 or '1080p' in f.lower() or '720p' in f.lower() or 'webrip' in f.lower()  
+                or 'bluray' in f.lower() and os.path.isdir(os.path.join(file_location, f))]
 
 # movies = [f for f in os.listdir(file_location) if 'so1' in f.lower()
 #             or '720p' in f.lower() or 'bluray' in f.lower() or 'complete' in f.lower()]
@@ -47,6 +54,13 @@ for picture in pictures:
     shutil.move(where_pic_from, where_pic_to)
 
     print(f'{picture} relocated to {where_pic_to}')
+
+for movie_folder in movie_folders:
+    where_movie_from = os.path.join(file_location, movie_folder)
+    where_movie_to = os.path.join(movie_folder_location, movie_folder)
+    shutil.move(where_movie_from, where_movie_to)
+
+    print(f'{movie_folder} relocated to {where_movie_to}')
 
 print('files moved successfully')
 
