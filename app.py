@@ -30,10 +30,7 @@ movie_folders = [f for f in os.listdir(file_location) if 'anime' in f.lower()
                  or '1080p' in f.lower() or '720p' in f.lower() or 'webrip' in f.lower()  
                 or 'bluray' in f.lower() and os.path.isdir(os.path.join(file_location, f))]
 
-# movies = [f for f in os.listdir(file_location) if 'so1' in f.lower()
-#             or '720p' in f.lower() or 'bluray' in f.lower() or 'complete' in f.lower()]
-
-# for loops that moves the file that has that specific word from the download folder to where i want
+# for-loops that moves the file that has that specific word from the download folder to where i want
 for item in cs_videos:
     where_video_from = os.path.join(file_location, item)
     where_video_to = os.path.join(cs_location, item)
